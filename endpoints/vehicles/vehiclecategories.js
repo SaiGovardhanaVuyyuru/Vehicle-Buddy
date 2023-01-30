@@ -9,7 +9,7 @@ async function vehicleCategoriesEndpoint(req,res)
 {
     let data=await getVehicleCategories();
     console.log(res.locals.user)
-    res.json({data:data,user:res.locals.user,success:true,redirect:false,message:"Fetched the data"});
+    res.json({data:data,success:true,redirect:false,message:"Fetched the data"});
 }
 
 exports.vehicleCategoriesEndpoint=vehicleCategoriesEndpoint;

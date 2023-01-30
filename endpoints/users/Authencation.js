@@ -24,7 +24,7 @@ function authenticateUserEndpoint(req,res)
         res.json({'success':false,'message':"Invalid Password."});
         return;
     }
-    res.cookie("userCredentials",JSON.stringify({email:email,name:user.name,password:password}),{maxAge:900000});
+    res.cookie("userCredentials",JSON.stringify({email:email,role:user.role,name:user.name,password:password}),{maxAge:900000});
     return res.json({'success':true,'toast-class':'bg-success','message':`Successfully Logged in ${user.name}`,"user":user});
 
 }

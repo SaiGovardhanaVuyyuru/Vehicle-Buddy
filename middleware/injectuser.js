@@ -7,7 +7,7 @@
  */
 async function injectUser(req,res,next)
 {   if(req.cookies.userCredentials!=null)
-        {   let {email,name,password}=JSON.parse(req.cookies.userCredentials);
+        {   let {email,name,password,role}=JSON.parse(req.cookies.userCredentials);
             res.locals.user={"email":email,"name":name,"password":password};
         }
     next();

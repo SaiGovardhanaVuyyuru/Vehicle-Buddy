@@ -9,11 +9,11 @@ function logoutEndPoint(req,res)
    if(req.cookies.userCredentials!=null)
     {   let user=JSON.parse(req.cookies.userCredentials);
         res.clearCookie('userCredentials');
-        res.json({success:true,"message":`Logging Out ${user.name}`,"toast-class":"bg-success"});
+        res.json({success:true,"message":`Logging out bro! Bye :( `,"toast-class":"bg-success"});
     }
     else
         {
-            res.json({success:false,"message":"Couldn't Find user","toast-class":"bg-danger"});
+            res.json({success:false,"message":"Session Expired","toast-class":"bg-danger"});
         }
 }
 

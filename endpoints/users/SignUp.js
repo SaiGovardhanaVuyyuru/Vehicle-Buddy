@@ -50,7 +50,7 @@ function createUserEndPoint(req,res)
 
             saveUser(req.body);
 
-            res.cookie("userCredentials",JSON.stringify({email:email,name:name,password:password}));
+            res.cookie("userCredentials",JSON.stringify({email:email,role:"customer",name:name,password:password}));
             
             res.json({'success':true,'toast-class':'bg-success','message':"Successfully signed up","data":{role:"customer",email:email,password:password,name:name}});
             

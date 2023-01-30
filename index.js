@@ -7,6 +7,9 @@ const { injectUser } = require('./middleware/injectuser');
 const { authenticateUserEndpoint } = require('./endpoints/users/Authencation');
 const cookieParser = require('cookie-parser');
 const { createUserEndPoint } = require('./endpoints/users/SignUp');
+const { logoutEndPoint } = require('./endpoints/users/Logout');
+const { getUserEndPoint } = require('./endpoints/users/GetUsers');
+const { editUserEndpoint } = require('./endpoints/users/EditUser');
 //Read the environment variables
 //Initialize Folders
 initialize();
@@ -21,7 +24,9 @@ app.use(injectUser);
 app.get('/vehicleCategories',vehicleCategoriesEndpoint);
 
 app.post('/user/authenticate',authenticateUserEndpoint);
-
 app.post('/user/createUser',createUserEndPoint);
+app.get('/user/getLoggedIn',getUserEndPoint);
+app.get('/user/logout',logoutEndPoint);
+app.put('/user/editUser',editUserEndpoint);
 
 app.listen(4292);
