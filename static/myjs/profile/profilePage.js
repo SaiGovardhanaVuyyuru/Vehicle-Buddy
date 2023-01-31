@@ -13,9 +13,10 @@ async function submitChange()
     let name=$('#name').val();
     let dob=$('#dob').val();
     let address=$("#address").val();
+    let profilepic=$('#profile').attr('src');
     try
     {
-        let response=await $.ajax({method:'PUT',url:'/user/editUser',data:JSON.stringify({email:email,name:name,dob:dob,address:address}),contentType:'application/json'})
+        let response=await $.ajax({method:'PUT',url:'/user/editUser',data:JSON.stringify({profilepic:profilepic,email:email,name:name,dob:dob,address:address}),contentType:'application/json'})
         
         if(response.success)
         {
@@ -80,14 +81,16 @@ async function doRender(data)
     $("#name").val(user.name);
     $("#dob").val(user.dob);
     $("#address").val(user.address);
-
+    if(user.profilepic!=undefined)
+      $("#profile").attr('src',user.profilepic);
 }
 async function toggleEditing()
 {   let name=$('#name');
     let email=$('#email');
     let dob=$('#dob');
     let address=$('#address');
-    let arr=[name,dob,address];
+    let input=$('#input');
+    let arr=[input,name,dob,address];
     arr.forEach(x=>{   console.log("HERE",x.attr('disabled')==='disabled')
 
             if(x.attr('disabled')=='disabled')
@@ -98,6 +101,29 @@ async function toggleEditing()
                 x.attr('disabled','disabled');
         }
         );
+    if(name.attr('disabled')=='disabled')
+    {
+      Swal.fire({
+        icon: 'error',
+        title: "Editing has been disabled!!!",
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:2200
+        
+      });
+    }
+    else
+    {
+      Swal.fire({
+        icon: 'success',
+        title: "Editing has been enabled!!!",
+        showConfirmButton: false, 
+        allowOutsideClick: false, 
+        timer:1500
+        
+      });
+    }
+    
     
 
 }
